@@ -60,17 +60,17 @@ for (const artifact of artifacts) {
   binaryPackages.push(dir);
 }
 
-const tag = snapshot ? "snapshot" : "latest";
-try {
-  for (const dir of binaryPackages) {
-    await $`cd ${dir} && npm publish --access public --tag ${tag}`;
-  }
-  console.log(nextPkg);
-  await Bun.write("package.json", JSON.stringify(nextPkg, null, 2));
-  await $`npm publish --access public --tag ${tag}`;
-  if (!snapshot)
-    await $`npm dist-tag add ${nextPkg.name}@${nextPkg.version} ion`;
-} finally {
-  await Bun.write("package.json", JSON.stringify(pkg, null, 2));
-  await fs.rmdir(tmp, { recursive: true });
-}
+// const tag = snapshot ? "snapshot" : "latest";
+// try {
+//   for (const dir of binaryPackages) {
+//     await $`cd ${dir} && npm publish --access public --tag ${tag}`;
+//   }
+//   console.log(nextPkg);
+//   await Bun.write("package.json", JSON.stringify(nextPkg, null, 2));
+//   await $`npm publish --access public --tag ${tag}`;
+//   if (!snapshot)
+//     await $`npm dist-tag add ${nextPkg.name}@${nextPkg.version} ion`;
+// } finally {
+//   await Bun.write("package.json", JSON.stringify(pkg, null, 2));
+//   await fs.rmdir(tmp, { recursive: true });
+// }
