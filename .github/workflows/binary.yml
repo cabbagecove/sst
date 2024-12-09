@@ -23,11 +23,11 @@ jobs:
         with:
           bun-version: latest
 
-      - run: |
-          npm config set //registry.npmjs.org/:_authToken $NODE_AUTH_TOKEN
-          npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - run: |
+      #     npm config set //registry.npmjs.org/:_authToken $NODE_AUTH_TOKEN
+      #     npm whoami
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: git fetch --force --tags
 
@@ -49,8 +49,8 @@ jobs:
           version: latest
           args: release --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.SST_GITHUB_TOKEN }}
-          AUR_KEY: ${{ secrets.AUR_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # AUR_KEY: ${{ secrets.AUR_KEY }}
 
       - run: |
           cd sdk/js
