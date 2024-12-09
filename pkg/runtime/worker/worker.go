@@ -127,6 +127,10 @@ func (w *Runtime) Build(ctx context.Context, input *runtime.BuildInput) (*runtim
 		},
 	}
 
+	if build.ESBuild.Target != 0 {
+		options.Target = build.ESBuild.Target
+	}
+
 	w.lock.RLock()
 	buildContext, ok := w.contexts[input.FunctionID]
 	w.lock.RUnlock()
